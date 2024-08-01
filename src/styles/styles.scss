@@ -1,0 +1,106 @@
+@use "config/reset.scss";
+@use "config/variaveis.scss";
+
+@mixin tamanhoDoContainer() {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@function calculoGridWidth($columns, $gap-percentage) {
+  @return (100% - ($gap-percentage * ($columns - 1))) / $columns;
+}
+
+body {
+  background-color: variaveis.$corFundoPrincipal;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  @include tamanhoDoContainer();
+}
+
+header {
+  background-color: variaveis.$corFundoCabecalho;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.menu {
+  display: flex;
+}
+
+.menu li {
+  font-weight: bold;
+  margin-left: 24px;
+}
+
+.menu li a {
+  color: variaveis.$corPrincipal;
+  text-decoration: none;
+}
+
+section {
+  padding: 56px 0;
+}
+
+.products {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, calculoGridWidth(3, 2%));
+  column-gap: 2%;
+  row-gap: 7%;
+  width: 100%;
+}
+
+.product-item img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+.product-button {
+  display: block;
+  background-color: variaveis.$corSecundaria;
+  color: variaveis.$corPrincipal;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 8px;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
+.product-button:hover {
+  background-color: darken(variaveis.$corSecundaria, 10%);
+}
+
+@media screen and (max-width: variaveis.$tablet) {
+  .container {
+    max-width: 80%;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, calculoGridWidth(2, 3%));
+    column-gap: 3%;
+  }
+}
+
+@media screen and (max-width: variaveis.$mobile) {
+  .products {
+    display: block;
+  }
+
+  .product-item {
+    margin-bottom: 32px;
+  }
+}

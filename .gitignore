@@ -1,0 +1,5 @@
+# Ignorar mapas de fonte gerados
+*.map
+
+# Node modules
+node_modules/
